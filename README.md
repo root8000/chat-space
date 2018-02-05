@@ -17,7 +17,7 @@ Structure of DataBase
 
 |Column|Type|Option|
 |------|----|------|
-|name|string|null: false|
+|name|string|null: false, add_index|
 |email|string|null: false, unique: true|
 |password|string|null: false|
 
