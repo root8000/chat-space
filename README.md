@@ -25,3 +25,15 @@ Structure of DataBase
 - has_many :messages
 - has_many :groups, through: :members
 - has_many :members
+
+## groupsテーブル
+
+|Column|Type|Option|
+|------|----|------|
+|name|string|null: false|
+
+### Association
+
+- has_many :messages
+- has_many :users, through: :members
+- has_many :members
