@@ -1,42 +1,40 @@
-.chat-side
-  .chat-side__user
-    .chat-side__user-content
-      .chat-side__user-name
+.left-contents
+  .left-content__user
+    .left-content__user-content
+      .left-content__user-content--user-name
         ユーザー名
-      %a{class: "chat-side__user--new-group", href: "/groups/new"}
+      %a{class: "left-content__user--new-group", href: "/groups/new"}
         %i{class: "fa fa-pencil-square-o"}btn
-      %a{class: "chat-side__user--edit-user", href: "/users/edit"}
+      %a{class: "left-content__user--edit-user", href: "/users/edit"}
         %i{class: "fa fa-cog"}btn
-  .chat-side__groups
-    .chat-side__groups-list
+  .left-content__groups
+    .left-content__groups-list
       %a{href: "/groups/グループID/messages"}
-      .chat-side__group
-        .chat-side__group-name
+      .left-content__group
+        .left-content__group-name
           グループ名
-        .chat-side__group-message
+        .left-content__group-message
           メッセージ
-.chat-main
-  .chat-main__header
-    .chat-main__header--group
-      .chat-main__header--group-name
+.main-contents
+  .main-content__header
+    .main-content__header--group
+      .main-content__header--group-name
         グループ名
-      %a{class: "chat-main__header--group-edit-btn", href: "/groups/グループID/edit"}edit
-      .chat-main__header--group-member-list
+      %a{class: "main-content__header--group-edit-btn", href: "/groups/グループID/edit"}edit
+      .main-content__header--group-member-list
         MEMBER:
         %i グループメンバー
-  .chat-main__body
-    .chat-main__body--messages-list
-      .chat-main__message
-        .chat-main__message-user-name
+  .main-content__body
+    .main-content__body--messages-list
+      .main-content__message
+        .main-content__message--user-name
           ユーザー名
-        .chat-main__messege-time
+        .main-content__messege--time
           投稿時間
-        .chat-main__message-body
+        .main-content__message--body
           メッセージ
-  .chat-main__footer
-    %form{class: "chat-main__footer-form", id: "new_message", action: "/groups/グループID/messages", method: "post", enctype: "multipart/form-data"}
-    .chat-main__footer-body
+  .main-content__footer
+    %form{class: "main-content__footer-form", id: "new_message", action: "/groups/グループID/messages", method: "post", enctype: "multipart/form-data"}
+    .main-content__footer-body
       %input{class: "message", id: "message_body", placeholder: "type a message", type: "text", name: ""}
     %input{type: "submit", class: "submit", value: "Send", name: ""}
-
-
