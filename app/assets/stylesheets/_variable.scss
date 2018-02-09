@@ -1,0 +1,24 @@
+@mixin clearfix() {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+$mainWhiteColor: #FFFFFF;
+$mainBlackColor: #434A54;
+$mainGlayColor: #999999;
+* *:before {
+  box-sizing: border-box;
+}
+i {
+  font-style: normal;
+}
+.fa {
+  color: #FFFFFF;
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
