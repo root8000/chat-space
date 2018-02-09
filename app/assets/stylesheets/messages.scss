@@ -1,3 +1,175 @@
-// Place all the styles related to the messages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "./variable";
+.alert {
+  width: 100%;
+  height: 24px;
+  background-color: #38AEF0;
+  &__word {
+    color: $mainWhiteColor;
+    text-align: center;
+  }
+}
+.contents {
+  @include clearfix();
+  width: 100%;
+  height: calc(100vh - 24px);
+}
+.left-contents {
+  width: 300px;
+  height: 100%;
+  background-color: #2f3e51;
+  color: $mainWhiteColor;
+  float: left;
+}
+.left-content__header {
+  width: 100%;
+  height: 100px;
+  background-color: #253141;
+  position: relative;
+  &__user-name {
+    height: 100%;
+    margin: 0 20px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 100px;
+    position: relative;
+    display: inline-block;
+  }
+  &__new-group {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    display: inline-block;
+  }
+  &__edit-user {
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    display: inline-block;
+  }
+}
+.left-content__body {
+  width: 100%;
+  height: calc(100%- 100px);
+}
+.groups-list {
+  height: 100%;
+}
+.left-content__body__group {
+  padding: 20px;
+  &__name {
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+  &__message {
+    font-size: 11px;
+  }
+}
+.main-contents {
+  width: calc(100% - 300px);
+  height: 100%;
+  float: left;
+}
+.main-content__header {
+  @include clearfix();
+  height: 100px;
+  border-bottom: 1px solid #eeeeee;
+  &__group {
+    padding: 0 40px;
+    &__name {
+      margin-top: 35px;
+      font-size: 20px;
+      color: #333333;
+      display: inline-block;
+    }
+    &__edit-btn {
+      height: 40px;
+      margin: 28px 0;
+      padding: 0 20px;
+      border: 1px solid #38AEF0;
+      display: inline-block;
+      line-height: 40px;
+      text-decoration: none;
+      color: #38AEF0;
+      float: right;
+    }
+    &__member-list {
+      margin-top: 15px;
+      font-size: 12px;
+      color: $mainGlayColor;
+    }
+  }
+}
+.main-content__body {
+  height: calc(100% - 100px - 90px);
+  &__messages-list {
+    padding: 26px 40px 0 40px;
+  }
+}
+.main-content__message {
+  @include clearfix();
+  padding: 20px 0;
+  &__user-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: $mainBlackColor;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  &__time {
+    font-size: 12px;
+    color: $mainGlayColor;
+    float: left;
+    margin: 2px 0;
+  }
+  &__body {
+    font-size: 14px;
+    color: $mainBlackColor;
+    clear: both;
+  }
+}
+.main-content__footer {
+  width: 100%;
+  height: 90px;
+  background-color: #AAAAAA;
+}
+.main-content__footer-body {
+  position: relative;
+  margin: 0 40px;
+  &__message {
+    width: calc(100% - 135px);
+    height: 50px;
+    margin: 20px 15px 20px 0;
+    padding: 0 10px;
+    border: none;
+  }
+  &__image-file {
+    height: 20px;
+    width: 20px;
+    margin: 32px 122px 0px 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    &__image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+    }
+    .fa-image {
+      color: black;
+    }
+  }
+  &__submit {
+    width: 100px;
+    height: 50px;
+    margin-left: 15px;
+    position: absolute;
+    right: 40px;
+    bottom: 20px;
+    background-color: #38AEF0;
+    color: $mainWhiteColor;
+    display: inline-block;
+    border: none;
+  }
+}
