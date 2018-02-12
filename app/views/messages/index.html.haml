@@ -6,7 +6,7 @@
     .left-content__header
       .left-content__header__user-name
         = current_user.name
-      = link_to "new_group_path", class: "left-content__header__new-group" do
+      = link_to new_group_path, class: "left-content__header__new-group" do
         %i.fa.fa-pencil-square-o
       = link_to edit_user_path(current_user), class: "left-content__header__edit-user" do
         %i.fa.fa-cog
