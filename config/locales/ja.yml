@@ -1,6 +1,10 @@
 ---
 ja:
   activerecord:
+    attributes:
+      group:
+        name: グループ名
+        user_ids: チャットメンバー
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
