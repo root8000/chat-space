@@ -1,18 +1,18 @@
 .contents
-  = render partial: "left_contents"
+  = render "shared/left_contents"
   .main-contents
     .main-content__header
       .main-content__header__group
         .main-content__header__group__name
           = @group.name
-        = link_to "Edit", "edit_group_path(@group)", class: "main-content__header__group__edit-btn"
+        = link_to "Edit", edit_group_path(@group), class: "main-content__header__group__edit-btn"
         .main-content__header__group__member-list
           Member:
           - @group.members.each do |member|
             %i= member.user.name
     .main-content__body
       .main-content__body__messages-list
-        = render partial: "main_content_messages"
+        = render @messages
     .main-content__footer
       .form.main-content__footer-body
         = form_for [@group, @message] do |f|

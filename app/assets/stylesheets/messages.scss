@@ -58,6 +58,7 @@ a {
 }
 .main-content__body {
   height: calc(100% - 100px - 90px);
+  overflow: scroll;
   &__messages-list {
     padding: 26px 40px 0 40px;
   }
