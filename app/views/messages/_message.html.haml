@@ -1,0 +1,9 @@
+.main-content__message
+  .main-content__message__user-name
+    = message.user.name
+  .main-content__message__time
+    = message.created_at
+  .main-content__message__body
+    - if message.content.present?
+      = message.content
+    = image_tag message.image.url if message.image.present?
