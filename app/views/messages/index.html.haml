@@ -4,18 +4,21 @@
     .main-content__header
       .main-content__header__group
         .main-content__header__group__name
-          グループ名
+          = @group.name
         = link_to "Edit", "edit_group_path(@group)", class: "main-content__header__group__edit-btn"
         .main-content__header__group__member-list
           Member:
-          %i グループメンバー
+          - @group.members.each do |member|
+            %i= member.user.name
     .main-content__body
       .main-content__body__messages-list
         = render partial: "main_content_messages"
     .main-content__footer
-      .main-content__footer-body
-        %input{class: "main-content__footer-body__message", id: "message_body", placeholder: "type a message", type: "text", name: ""}
-        %label{class: "main-content__footer-body__image-file", for: "message_image"}
-          %input{class: "main-content__footer-body__image-file__image", type: "file", name: "message[image]", id: "message_image"}
-          %i.fa.fa-image
-      %input{type: "submit", class: "main-content__footer-body__submit", value: "Send", name: ""}
+      .form.main-content__footer-body
+        = form_for [@group, @message] do |f|
+          = f.text_field :content, class: 'main-content__footer-body__message', placeholder: 'type a message'
+          .main-content__footer-body__image-file
+            = f.label :image do
+              = fa_icon 'picture-o', class: 'fa fa-image'
+              = f.file_field :image, class: 'main-content__footer-body__image-file__image'
+          = f.submit 'Send', class:'main-content__footer-body__submit'
