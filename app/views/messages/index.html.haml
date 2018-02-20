@@ -15,7 +15,7 @@
         = render @messages
     .main-content__footer
       .form.main-content__footer-body
-        = form_for [@group, @message] do |f|
+        = form_for [@group, @message], html: {class: 'message-form'} do |f|
           = f.text_field :content, class: 'main-content__footer-body__message', placeholder: 'type a message'
           .main-content__footer-body__image-file
             = f.label :image do
