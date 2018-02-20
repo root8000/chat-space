@@ -76,12 +76,14 @@ a {
   }
   &__time {
     font-size: 12px;
+    font-weight: normal;
     color: $mainGlayColor;
     float: left;
     margin: 2px 0;
   }
   &__body {
     font-size: 14px;
+    font-weight: normal;
     color: $mainBlackColor;
     clear: both;
   }
