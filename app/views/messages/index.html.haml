@@ -1,11 +1,11 @@
 .contents
-  = render "shared/left_contents"
+  = render 'shared/left_contents'
   .main-contents
     .main-content__header
       .main-content__header__group
         .main-content__header__group__name
           = @group.name
-        = link_to "Edit", edit_group_path(@group), class: "main-content__header__group__edit-btn"
+        = link_to "Edit", edit_group_path(@group), class: 'main-content__header__group__edit-btn'
         .main-content__header__group__member-list
           Member:
           - @group.members.each do |member|
