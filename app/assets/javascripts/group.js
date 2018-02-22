@@ -33,7 +33,8 @@ $(function(){
     searchList.append(html);
   }
   //検索結果リストの各userに設置した追加ボタンが押された時に発火するイベント
-  $(document).on('click', '.chat-group-user__btn--add', function(){
+  $(document).on('click', '.chat-group-user__btn--add', function(e){
+    e.preventDefault();
     //追加ボタンに記述したdataからuserのidを取得
     var id = $(this).attr('data-user-id');
     //追加ボタンに記述したdataからuserのnameを取得
@@ -49,38 +50,44 @@ $(function(){
     $(this).parent().remove();
   });
   //検索フォームに入力の度に発火するイベント
-  $(".chat-group-form__input").on('keyup', function(){
+  $(".chat-group-form__input").on('keyup', function(e){
+    e.preventDefault();
     //検索フォームの入力内容を取得
     var input = $(this).val();
     //非同期通信の設定
-    $.ajax({
-      type: 'GET',
-      url: '/users',
-      data: { keyword: input },
-      dataType: 'json'
-    })
-    //通信成功時の処理
-    .done(function(users){
-      //前の検索結果の削除
-      $('#user-search-result').empty();
-      //検索結果数が０ではなければ、
-      if(users.length !== 0){
-        //各userに対して、
-        users.forEach(function(user){
-          //appendUserを適用する
-          appendUser(user);
-        });
-      }
-      //検索結果数が０であれば、
-      else{
-        //appendNoUserに不一致メッセージを渡す
-        appendNoUser("一致するユーザーはいません");
-      }
-    })
-    //通信失敗時の処理
-    .fail(function(){
-      //検索失敗アラートを出す
-      alert("検索に失敗しました");
-    });
+    if(input !== ""){
+      $.ajax({
+        type: 'GET',
+        url: '/users',
+        data: { keyword: input },
+        dataType: 'json'
+      })
+      //通信成功時の処理
+      .done(function(users){
+        //前の検索結果の削除
+        $('#user-search-result').empty();
+        //検索結果数が０ではなければ、
+        if(users.length !== 0){
+          //各userに対して、
+          users.forEach(function(user){
+            //appendUserを適用する
+            appendUser(user);
+          });
+        }
+        //検索結果数が０であれば、
+        else{
+          //appendNoUserに不一致メッセージを渡す
+          appendNoUser("一致するユーザーはいません");
+        }
+      })
+      //通信失敗時の処理
+      .fail(function(){
+        //検索失敗アラートを出す
+        alert("検索に失敗しました");
+      });
+    }
+    else{
+      searchList.remove();
+    }
   });
 });
