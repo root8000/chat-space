@@ -78,9 +78,8 @@ $(function(){
     messages.forEach(function(message) {
       //HTMLを作成
       insertHTML += buildHTML(message);
-      // }
     });
-    //作成したHTMLをチャット最後尾に追加
+    //作成したHTMLでメッセージ画面を再描写
     $('.main-content__body__messages-list').html(insertHTML);
   })
   //通信失敗時
