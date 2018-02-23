@@ -1,7 +1,7 @@
 $(function(){
   function buildHTML(message){
     var image = (message.image.url == null) ? "" :`<img src = "${ message.image.url }">`;
-    var html = `<div class = "main-content__message">
+    var html = `<div class = "main-content__message" data-message-id = "${ message.id }"
                   <div class = "main-content__message__user-name">
                     <div class = "main-content__message__user-name">
                       ${ message.user_name }
@@ -53,4 +53,40 @@ $(function(){
       resetContent();
     })
   });
+
+  //自動更新機能に関する記述
+  $(function(){
+    //今のグループチャット画面にいる限り
+    if(window.location.href.match(/\/groups\/\d+\/messages/)){
+    //5秒ごとにupdate関数を呼び出す
+      setInterval(update, 5000);
+      };
+    });
+  function update(){
+    //最新のmessage_idを取得
+    var latestId = $('.main-content__message').last().data('message_id');
+  //非同期通信の設定
+  $.ajax({
+    url: window.location.href,
+    data: { latestId: latestId },
+    dataType: 'json'
+  })
+  //通信成功時
+  .done(function(messages){
+    //二度目以降に残っていないよう削除
+    var insertHTML = "";
+    //Ajaxでもらったmessagesの各messageに対して
+    messages.forEach(function(message) {
+      //HTMLを作成
+      insertHTML += buildHTML(message);
+      // }
+    });
+    //作成したHTMLをチャット最後尾に追加
+    $('.main-content__body__messages-list').html(insertHTML);
+  })
+  //通信失敗時
+  .fail(function(data){
+    alert("自動更新できませんでした");
+  });
+  };
 });
