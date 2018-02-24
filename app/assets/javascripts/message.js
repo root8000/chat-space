@@ -92,7 +92,7 @@ $(function(){
     });
     //作成したHTMLを表示中のmessageの一番下に挿入
     $('.main-content__body__messages-list').append(insertHTML);
-    resetContent();
+    $('.main-content__body').animate({scrollTop: $('.main-content__body')[0].scrollHeight}, 'fast');
   })
   //通信失敗時
   .fail(function(data){
