@@ -20,6 +20,7 @@ $(function(){
     $('.main-content__footer-body__message').val("");
     $('.main-content__footer-body__image-file__image').val("");
     $('.main-content__footer-body__submit').removeAttr("disabled");
+    $('.main-content__body').animate({scrollTop: $('.main-content__body')[0].scrollHeight}, 'fast');
   };
   function flashMessage(){
     var notice = `<div class="notice">メッセージが送信されました</div>`;
@@ -44,7 +45,6 @@ $(function(){
       $('.main-content__body__messages-list').append(html);
       $('.notification').append(notice);
       $('.notice').fadeOut(3000);
-      $('.main-content__body').animate({scrollTop: $('.main-content__body')[0].scrollHeight}, 'fast');
       resetContent();
     })
     .fail(function(){
@@ -62,12 +62,20 @@ $(function(){
       };
     });
   function update(){
-    //最新のmessage_idを取得
-    var latestId = $('.main-content__message').last().data('message_id');
+    //messageが１つでもあるなら
+    if($('.main-content__message')[0]){
+      //latestIdに表示中のmessageの中で最新のidを代入
+      var latestId = $('.main-content__message').last().data('messageId');
+    }
+    //まだmessageがないのならば
+    else{
+      //latestIdには0を代入
+      var latestId = "0";
+    }
   //非同期通信の設定
   $.ajax({
     url: window.location.href,
-    data: { latestId: latestId },
+    data: { id: latestId },
     dataType: 'json'
   })
   //通信成功時
@@ -76,11 +84,15 @@ $(function(){
     var insertHTML = "";
     //Ajaxでもらったmessagesの各messageに対して
     messages.forEach(function(message) {
-      //HTMLを作成
-      insertHTML += buildHTML(message);
+      //表示中の最新messageのidよりも新しいidであれば
+      if(message.id > latestId){
+        //HTMLを作成
+        insertHTML += buildHTML(message);
+      };
     });
-    //作成したHTMLでメッセージ画面を再描写
-    $('.main-content__body__messages-list').html(insertHTML);
+    //作成したHTMLを表示中のmessageの一番下に挿入
+    $('.main-content__body__messages-list').append(insertHTML);
+    resetContent();
   })
   //通信失敗時
   .fail(function(data){
